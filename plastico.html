@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciclagem de Plástico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8eeaa0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:disabled {
+            background-color: #ccc;
+        }
+        .points {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .info-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .info-link a {
+            color: #229543;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reciclagem de Plástico</h1>
+        <div class="form-group">
+            <label for="city">Digite sua cidade:</label>
+            <input type="text" id="city" placeholder="Sua cidade">
+        </div>
+        <div class="form-group">
+            <label for="weight">Digite o peso do plástico reciclado (em kg):</label>
+            <input type="number" id="weight" placeholder="Peso em kg">
+        </div>
+        <div class="form-group">
+            <button id="generatePoints" disabled>Gerar Pontos</button>
+        </div>
+        <div class="points" id="points">Você ganhou 0 pontos!</div>
+        <div class="info-link">
+            <a href="informativo.html">Saiba mais sobre a reciclagem de plástico</a>
+        </div>
+    </div>
+    <script>
+        const cityInput = document.getElementById('city');
+        const weightInput = document.getElementById('weight');
+        const generatePointsButton = document.getElementById('generatePoints');
+        const pointsDisplay = document.getElementById('points');
+
+        cityInput.addEventListener('input', () => {
+            generatePointsButton.disabled = cityInput.value.trim() === '' || weightInput.value.trim() === '';
+        });
+
+        weightInput.addEventListener('input', () => {
+            generatePointsButton.disabled = cityInput.value.trim() === '' || weightInput.value.trim() === '';
+        });
+
+        generatePointsButton.addEventListener('click', () => {
+            const weight = parseFloat(weightInput.value);
+            const points = weight * 10;
+            pointsDisplay.textContent = `Você ganhou ${points} pontos!`;
+        });
+    </script>
+</body>
+</html>
